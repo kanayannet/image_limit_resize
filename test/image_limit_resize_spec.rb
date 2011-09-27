@@ -9,7 +9,7 @@ describe "ImageLimitResize test" do
 		filename = 'sakura.jpg'
 		@obj = ImageLimitResize.new(filename)
 	end
-	it "limit 40px で resize できるか?" do
+	it "limit 90px で resize できるか?" do
 		@obj.set_limit(90).resize("sakura_resize.jpg").should == true
 		img = Magick::Image.read("sakura_resize.jpg").first
 		img.columns.should <= 90
