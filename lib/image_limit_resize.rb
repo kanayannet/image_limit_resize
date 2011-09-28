@@ -11,11 +11,14 @@ class ImageLimitResize
 	end
 	
 	def set_limit(size = 0)
+		#except number
+		return self if(/^\d+$/!~size.to_s)
 		@size = size
 		return self
 	end
 
 	def resize(file = "")
+		return false if(@size.to_i > 0)
 		width = @img.columns
 		height = @img.rows
 		ret = limit_convert({:width => width,
