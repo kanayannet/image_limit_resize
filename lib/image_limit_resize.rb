@@ -7,7 +7,12 @@ class ImageLimitResize
 	require "RMagick"
 
 	def initialize(file = "")
-		@img = Magick::Image.read(file).first
+		@is_error = false
+		begin
+			@img = Magick::Image.read(file).first
+		rescue
+			@is_error = true
+		end
 	end
 	
 	def set_limit(size = 0)
@@ -18,6 +23,8 @@ class ImageLimitResize
 	end
 
 	def resize(file = "")
+		return false if(@is_error == true)
+		return false if(/^jpeg$|^gif$|^png$/i !~@img.format.to_s)
 		return false if(@size.to_i <= 0)
 		width = @img.columns
 		height = @img.rows
