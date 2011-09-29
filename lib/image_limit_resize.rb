@@ -15,6 +15,11 @@ class ImageLimitResize
 		end
 	end
 	
+	def get_type()
+		return false if(@is_error == true)
+		return @img.format
+	end
+	
 	def set_limit(size = 0)
 		#except number
 		return self if(/^\d+$/!~size.to_s)
@@ -24,7 +29,7 @@ class ImageLimitResize
 
 	def resize(file = "")
 		return false if(@is_error == true)
-		return false if(/^jpeg$|^gif$|^png$/i !~@img.format.to_s)
+		return false if(/^jpeg$|^gif$|^png$/i !~@img.format)
 		return false if(@size.to_i <= 0)
 		width = @img.columns
 		height = @img.rows
