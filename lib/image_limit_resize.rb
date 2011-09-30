@@ -6,10 +6,21 @@ class ImageLimitResize
 
 	require "RMagick"
 
-	def initialize(file = "")
+	def initialize()
 		@is_error = false
+	end
+	
+	def set_file(file = "")
 		begin
 			@img = Magick::Image.read(file).first
+		rescue
+			@is_error = true
+		end
+	end
+
+	def set_buffer(buffer)
+		begin
+			@img = Magick::Image.from_blob(buffer).shift
 		rescue
 			@is_error = true
 		end
