@@ -16,6 +16,7 @@ class ImageLimitResize
 		rescue
 			@is_error = true
 		end
+		return self
 	end
 
 	def set_buffer(buffer)
@@ -24,6 +25,7 @@ class ImageLimitResize
 		rescue
 			@is_error = true
 		end
+		return self
 	end
 	
 	def get_type()
