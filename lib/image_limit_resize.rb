@@ -44,6 +44,8 @@ class ImageLimitResize
 		return false if(@is_error == true)
 		return false if(/^jpeg$|^gif$|^png$/i !~@img.format)
 		return false if(@size.to_i <= 0)
+		@img.auto_orient!
+		@img.strip!
 		width = @img.columns
 		height = @img.rows
 		ret = limit_convert({:width => width,
