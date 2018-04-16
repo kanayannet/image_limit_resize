@@ -7,9 +7,10 @@ class ImageLimitResize
     raise 'buffer and file is nil' if file.nil? && buffer.nil?
     raise "#{file} is not exist" if file.nil? == false && File.exist?(file) == false
 
-    @img = Magick::Image.read(file).first if file.nil? == false && File.exist?(file)
-    @img = Magick::Image.from_blob(buffer).shift if buffer.nil? == false
+    @img = Magick::Image.read(file).first if !file.nil? && File.exist?(file)
+    @img = Magick::Image.from_blob(buffer).shift unless buffer.nil?
     @size = nil
+    @format_pattern = /^jpeg$|^gif$|^png$/i
   end
   attr_accessor :size
 
@@ -18,9 +19,9 @@ class ImageLimitResize
   end
 
   def resize(file)
-    raise "size:#{@size} value is not Integer" unless @size.class == Integer
-    raise "format:#{@img.format} can't allow" if /^jpeg$|^gif$|^png$/i !~ @img.format
-    raise 'size 0 can\'not allow' if @size.to_i <= 0
+    raise "size:#{@size} value is not Integer" unless @size.is_a?(Integer)
+    raise "format:#{@img.format} can't allow" if @format_pattern !~ @img.format
+    raise 'size 0 can\'not allow' if @size <= 0
 
     @img.auto_orient!
     @img.strip!
