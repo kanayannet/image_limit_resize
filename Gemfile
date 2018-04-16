@@ -5,5 +5,4 @@ source "https://rubygems.org"
 gem 'rmagick'
 gem 'minitest'
 gem 'rubocop'
-gem 'pry'
-gem 'byebug'
+gem 'rake'
