@@ -4,8 +4,8 @@ require 'rmagick'
 # image magick limit resize author @kanayannet
 class ImageLimitResize
   def initialize(file: nil, buffer: nil)
-    raise 'buffer and file is nil' if file.nil? && buffer.nil?
-    raise "#{file} is not exist" if file.nil? == false && File.exist?(file) == false
+    raise_file_and_buffer(file, buffer)
+    raise_file(file)
 
     @img = Magick::Image.read(file).first if !file.nil? && File.exist?(file)
     @img = Magick::Image.from_blob(buffer).shift unless buffer.nil?
@@ -13,6 +13,14 @@ class ImageLimitResize
     @format_pattern = /^jpeg$|^gif$|^png$/i
   end
   attr_accessor :size
+
+  def raise_file_and_buffer(file, buffer)
+    raise 'buffer and file is nil' if file.nil? && buffer.nil?
+  end
+
+  def raise_file(file)
+    raise "#{file} is not exist" unless file.nil? || File.exist?(file)
+  end
 
   def format
     @img.format
