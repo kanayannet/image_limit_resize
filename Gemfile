@@ -1,8 +1,6 @@
-# frozen_string_literal: true
-
 source "https://rubygems.org"
 
-gem 'rmagick'
-gem 'minitest'
-gem 'rubocop'
-gem 'rake'
+git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
+
+# Specify your gem's dependencies in image_limit_resize.gemspec
+gemspec
