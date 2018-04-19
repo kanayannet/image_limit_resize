@@ -13,7 +13,7 @@ class ImageLimitResizeTest < Minitest::Test
 
   def test_not_image_file
     assert_raises do
-      obj_error = ImageLimitResize.new(file: './test.txt')
+      obj_error = ImageLimitResize.new(file: './data/test.txt')
       obj_error.size = 90
       obj_error.resize('./data/sakura_resize.jpg')
     end
