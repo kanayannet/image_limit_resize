@@ -1,2 +1,14 @@
 .bundle
 pkg
+Gemfile.lock
+bin
+description
+refs
+hooks
+logs
+objects
+HEAD
+config
+index
+packed-refs
+info
