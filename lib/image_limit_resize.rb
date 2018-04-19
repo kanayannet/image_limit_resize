@@ -4,32 +4,22 @@ require 'rmagick'
 module ImageLimitResize
   # image magick limit resize author @kanayannet
   class Base
+    FORMAT_PATTERN = /^jpeg$|^gif$|^png$/i
     def initialize(file: nil, buffer: nil)
-      raise_file_and_buffer(file, buffer)
-      raise_file(file)
-
       @img = Magick::Image.read(file).first if !file.nil? && File.exist?(file)
       @img = Magick::Image.from_blob(buffer).shift unless buffer.nil?
       @size = nil
-      @format_pattern = /^jpeg$|^gif$|^png$/i
     end
     attr_accessor :size
-
-    def raise_file_and_buffer(file, buffer)
-      raise 'buffer and file is nil' if file.nil? && buffer.nil?
-    end
-
-    def raise_file(file)
-      raise "#{file} is not exist" unless file.nil? || File.exist?(file)
-    end
 
     def format
       @img.format
     end
 
     def valid?
+      raise 'buffer and file is nil' if @img.nil?
       raise "size:#{@size} value is not Integer" unless @size.is_a?(Integer)
-      raise "#{@img.format} can't allow" if @format_pattern !~ @img.format
+      raise "#{@img.format} can't allow" if FORMAT_PATTERN !~ @img.format
       raise 'size 0 can\'not allow' if @size <= 0
     end
 
