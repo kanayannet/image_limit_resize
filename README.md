@@ -21,6 +21,8 @@ Or install it yourself as:
 ## Usage
 
 ```
+require 'image_limit_resize'
+
 file = './sakura.jpg'
 image_limit = ImageLimitResize::Base.new(file: file)
 image_limit.format #=> 'JPEG'
