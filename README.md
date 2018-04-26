@@ -12,7 +12,7 @@ gem 'image_limit_resize'
 
 And then execute:
 
-    $ bundle
+    $ bundle install
 
 Or install it yourself as:
 
