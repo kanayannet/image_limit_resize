@@ -12,11 +12,3 @@ workflows:
   test:
     jobs:
       - test
-  every:
-    triggers:
-      - schedule:
-        cron: "*/5 * * * *"
-        filters:
-          branches:
-            only:
-              - master
