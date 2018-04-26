@@ -1,11 +1,5 @@
 version: 2
 jobs:
-  build:
-    docker:
-      - image: kanayannet/image_limit_resize:latest
-    steps:
-      - checkout
-      - run: bundle install
   test:
     docker:
       - image: kanayannet/image_limit_resize:latest
@@ -15,7 +9,14 @@ jobs:
       - run: bundle exec ruby test/image_limit_resize_test.rb
 workflows:
   version: 2
-  build_and_test:
+  test:
     jobs:
-      - build
       - test
+  scheduled_workflow:
+    triggers:
+      - schedule:
+        cron: "*/5 * * * *"
+        filters:
+          branches:
+            only:
+              - master
