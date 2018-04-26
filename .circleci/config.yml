@@ -12,7 +12,7 @@ workflows:
   test:
     jobs:
       - test
-  scheduled_workflow:
+  every:
     triggers:
       - schedule:
         cron: "*/5 * * * *"
