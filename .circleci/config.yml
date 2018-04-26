@@ -12,3 +12,11 @@ workflows:
   test:
     jobs:
       - test
+  scheduled-workflow:
+    triggers:
+      - schedule:
+        cron: "* * * * *"
+        filters:
+          branches:
+            only:
+              - master
