@@ -15,10 +15,6 @@ workflows:
   scheduled-workflow:
     triggers:
       - schedule:
-        cron: "* * * * *"
-        filters:
-          branches:
-            only:
-              - master
+          cron: "*/5 * * * *"
     jobs:
       - build
