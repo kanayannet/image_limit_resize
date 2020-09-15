@@ -11,4 +11,4 @@ install:
   # explicitly install
   - bundle install --path .bundle
 script:
-  - bundle exec ruby test/natto2classifier_test.rb
+  - bundle exec ruby test/image_limit_resize_test.rb
