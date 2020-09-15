@@ -5,7 +5,7 @@ jobs:
       - image: kanayannet/image_limit_resize:latest
     steps:
       #- checkout
-      - run: bundle install --path vendor/bundle
+      - run: sudo bundle install
       - run: bundle exec ruby test/image_limit_resize_test.rb
 workflows:
   version: 2
