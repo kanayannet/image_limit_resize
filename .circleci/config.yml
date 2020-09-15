@@ -2,11 +2,14 @@ version: 2
 jobs:
   test:
     docker:
-      - image: kanayannet/image_limit_resize:latest
-    working_directory: /workspace/image_limit_resize
+      - image: circleci/ruby:2.6.5
+    working_directory: ~/repo
     steps:
       - checkout
-      - run: bundle install
+      - run: gem install bundler -v 2.1.4
+      - run: sudo apt-get update -qq
+      - run: sudo apt install libmagickcore-dev libmagickwand-dev
+      - run: bundle install --path .bundle
       - run: bundle exec ruby test/image_limit_resize_test.rb
 workflows:
   version: 2
