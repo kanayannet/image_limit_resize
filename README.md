@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/kanayannet/image_limit_resize.svg?branch=master)](https://travis-ci.org/kanayannet/image_limit_resize)
+
 # ImageLimitResize
 
 It is a library for shrinking the image to equal ratio. It depends on rmagick.
