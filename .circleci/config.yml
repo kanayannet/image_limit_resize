@@ -3,10 +3,10 @@ jobs:
   test:
     docker:
       - image: kanayannet/image_limit_resize:latest
+    working_directory: /workspace/image_limit_resize
     steps:
-      #- checkout
-      - run: yum install -y sudo
-      - run: sudo bundle install
+      - checkout
+      - run: bundle install
       - run: bundle exec ruby test/image_limit_resize_test.rb
 workflows:
   version: 2
