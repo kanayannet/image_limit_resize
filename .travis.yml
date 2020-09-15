@@ -2,4 +2,13 @@ sudo: false
 language: ruby
 rvm:
   - 2.4.3
-before_install: gem install bundler -v 1.16.1
+before_install:
+  - gem install bundler -v 1.16.1
+  - sudo apt-get update -qq
+install:
+  # imagemagic
+  - sudo apt install libmagickcore-dev libmagickwand-dev
+  # explicitly install
+  - bundle install --path .bundle
+script:
+  - bundle exec ruby test/natto2classifier_test.rb
